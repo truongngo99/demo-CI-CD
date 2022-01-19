@@ -13,9 +13,9 @@ jobs:
       - run: flutter test
   build:
     steps:
-    - run: flutter build apk --release
-      - store_artifacts:
-          path: build/app/outputs/flutter-apk/app-release.apk
+      - run: flutter build apk --release
+        - store_artifacts:
+            path: build/app/outputs/flutter-apk/app-release.apk
 
 
 workflows:
