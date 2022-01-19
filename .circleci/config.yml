@@ -2,8 +2,9 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 on:
-  branches:
-    - master
+  pull-request:
+    branches:
+      - master
 jobs:
   build:
     docker:
