@@ -12,6 +12,8 @@ jobs:
       - run: flutter pub get
       - run: flutter test
   build:
+    docker:
+      - image: cirrusci/flutter
     steps:
       - run: flutter build apk --release
         - store_artifacts:
