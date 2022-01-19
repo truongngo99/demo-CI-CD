@@ -3,21 +3,28 @@
 version: 2.1
    
 jobs:
-  pub-get-build:
+  pub-get-test:
     docker:
       - image: cirrusci/flutter
     steps:
       - checkout
       - run: flutter doctor
       - run: flutter pub get
-      - run: flutter build apk --release
+      - run: flutter test
+  build:
+    steps:
+    - run: flutter build apk --release
       - store_artifacts:
           path: build/app/outputs/flutter-apk/app-release.apk
+
 
 workflows:
   my-pipeline:
     jobs:
-      - pub-get-build:
+      - pub-get-test
+      - build:
+          requires:
+            - pub-get-test
           filters:
             branches:
               only:
