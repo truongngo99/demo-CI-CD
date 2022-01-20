@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       JAVA_VERSION: "1.8"
       FLUTTER_VERSION: "2.8.1"
