@@ -20,7 +20,7 @@ jobs:
       - run: flutter build apk --release
       - name: Create a Release APK
       - uses: actions/upload-artifact@v2
-          with:
+        with:
           path: build/app/outputs/flutter-apk/app-release.apk
 
 
