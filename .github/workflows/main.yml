@@ -14,7 +14,6 @@ jobs:
           channel: 'stable' # or: 'beta', 'dev' or 'master'
       - run: flutter --version
       - run: flutter pub get
-      - run: flutter test
   Build-app:
     needs: Test-app
     runs-on: windows-latest
