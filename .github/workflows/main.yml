@@ -19,8 +19,6 @@ jobs:
     steps:
       Build-file-apk:
         - run: flutter build apk --release
-        - name: Create a Release APK
-        - uses: actions/upload-artifact@v2
           with:
             path: build/app/outputs/flutter-apk/app-release.apk
 
