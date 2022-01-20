@@ -2,18 +2,15 @@ name: CI
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [ develop ]
 jobs:
   build:
-    runs-on: ubuntu-latest
-    env:
-      JAVA_VERSION: "1.8"
-      FLUTTER_VERSION: "2.8.1"
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: action/setup-java@v1
-        with:
-          java-version: $
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: $
+          channel: 'stable'
       - run: flutter pub get
