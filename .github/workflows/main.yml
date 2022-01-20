@@ -18,10 +18,12 @@ jobs:
     runs-on: windows-latest
     steps:
       Build-file-apk:
-        - name: Create a Release APK
-        - uses: actions/upload-artifact@v2
-        - run: flutter build apk --release
-          with:
-            path: build/app/outputs/flutter-apk/app-release.apk
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.x.x'
+          channel: 'stable' # or: 'beta', 'dev' or 'master'
+      - run: flutter build apk --release
+        
 
 
