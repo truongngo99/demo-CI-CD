@@ -1,6 +1,6 @@
 name: CI
 on:
-  push:
+  pull_request_target: 
     branches: [master]
 jobs:
   build:
@@ -11,3 +11,4 @@ jobs:
       with:
         channel: 'stable' # or: 'beta', 'dev' or 'master'
     - run: flutter --version
+    - run: flutter pub get
