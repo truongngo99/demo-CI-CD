@@ -1,9 +1,19 @@
-name: build file apk
+name: CI
 on:
   push:
     branches: [master]
 jobs:
-  test:
+  build:
     runs-on: windows-latest
+    env:
+      JAVA_VERSION: "1.8"
+      FLUTTER_VERSION: "2.8.1"
     steps:
+      - uses: actions/checkout@v2
+      - uses: action/setup-java@v1
+        with:
+          java-version: $
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: $
       - run: flutter pub get
