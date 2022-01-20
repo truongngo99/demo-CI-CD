@@ -6,5 +6,4 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: flutter doctor
+      - run: flutter pub get
