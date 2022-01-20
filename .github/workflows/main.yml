@@ -18,6 +18,8 @@ jobs:
     runs-on: windows-latest
     steps:
       Build-file-apk:
+        - name: Create a Release APK
+        - uses: actions/upload-artifact@v2
         - run: flutter build apk --release
           with:
             path: build/app/outputs/flutter-apk/app-release.apk
