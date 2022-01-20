@@ -17,8 +17,8 @@ jobs:
       - run: flutter test
   Build-app:
     needs: Test-app
-      runs-on: windows-latest
-      steps:
-        - run: echo Hello word
+    runs-on: windows-latest
+    steps:
+      - run: echo Hello word
 
 
