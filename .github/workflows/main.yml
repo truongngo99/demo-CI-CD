@@ -10,7 +10,6 @@ jobs:
       FLUTTER_VERSION: "2.8.1"
     steps:
       - uses: actions/checkout@v2
-      - uses: truongngo99/demo-CI-CD@v1
         with:
           flutter-version: $
       - run: flutter pub get
