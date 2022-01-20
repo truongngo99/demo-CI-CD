@@ -17,6 +17,10 @@ jobs:
     needs: Test-app
     runs-on: windows-latest
     steps:
-      - run: echo Hello word
+      - run: flutter build apk --release
+      - name: Create a Release APK
+      - uses: actions/upload-artifact@v2
+          with:
+          path: build/app/outputs/flutter-apk/app-release.apk
 
 
