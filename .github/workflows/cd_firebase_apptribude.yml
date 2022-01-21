@@ -5,22 +5,47 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
-  Test-app:
-    runs-on: ubuntu-latest
+  Build-apk:
+    name: Build FLutter (Android)
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with: 
+          java-version: '12.x'
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable' # or: 'beta', 'dev' or 'master'
       - run: flutter pub get
       - run: flutter build apk --release
-      - name: Upload apk to Firebase Distribution
+      - name: Upload apk to Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
+  Upload to Firebase:
+    name: Upload Android Beta to Firebase App Distribution
+    needs: [Build-apk]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK 1.8
+        uses: actions/setup-java@v2
+        with:
+          java-version: 1.8
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release-apk
+      - name: Upload APK
         uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with: 
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: testers
-          file: build\app\outputs\flutter-apk\app-release.apk
+        with: appId: ${{secrets.FIREBASE_APP_ID}}
+        token: ${{secrets.FIREBASE_TOKEN}}
+        groups: testers
+        file: app-release.apk
+
+      
+  
  
         
 
