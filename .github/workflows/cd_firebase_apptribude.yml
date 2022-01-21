@@ -16,7 +16,7 @@ jobs:
       - name: Build file apk
       - run: flutter build apk --release
       - name: upload artifact to Firebase App Distribution
-      - uses: wzieba/Firebase-Distribution-Github-Action@v1
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with: 
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
