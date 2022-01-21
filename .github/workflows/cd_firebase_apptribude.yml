@@ -13,7 +13,6 @@ jobs:
         with:
           channel: 'stable' # or: 'beta', 'dev' or 'master'
       - run: flutter pub get
-      - name: Build file apk
       - run: flutter build apk --release
  
         
