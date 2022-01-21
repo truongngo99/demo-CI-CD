@@ -1,0 +1,24 @@
+name: Build & upload to Firebase App Distribution 
+on: 
+  push:
+    branches: [master]
+jobs:
+  Build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.x'
+          channel: 'stable' # or: 'beta', 'dev' or 'master'
+      - name: pub get package
+      - run: flutter pub get
+      - name: Build file apk
+      - run: flutter build apk --release
+      - name: upload artifact to Firebase App Distribution
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with: 
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: testers
+          file: build\app\outputs\flutter-apk\app-release.apk 
