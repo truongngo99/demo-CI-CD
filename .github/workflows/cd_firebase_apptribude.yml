@@ -15,4 +15,4 @@ jobs:
       - run: flutter pub get
       - name: Build file apk
       - run: flutter build apk --release
-      - name: upload artifact to Firebase App Distribution
+    
