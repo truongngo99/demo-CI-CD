@@ -1,18 +1,20 @@
-name: Build & upload to Firebase App Distribution 
-on: 
-  push:
+name: CI
+on:
+  push: 
     branches: [master]
+  pull_request:
+    branches: [ master ]
 jobs:
-  Build:
+  Test-app:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.x'
           channel: 'stable' # or: 'beta', 'dev' or 'master'
-      - name: pub get package
       - run: flutter pub get
       - name: Build file apk
       - run: flutter build apk --release
-    
+ 
+        
+
