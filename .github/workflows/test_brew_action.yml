@@ -1,9 +1,8 @@
 name: Analyze pull request
 
 on:
-  push:
-    branches:
-      - 'master'
+  push: 
+    branches: [master]
 
 
 jobs:
