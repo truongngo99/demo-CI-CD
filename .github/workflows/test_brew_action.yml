@@ -1,22 +1,23 @@
-name: deploy staging
+name: Analyze pull request
 
 on:
   push:
     branches:
-      - 'master'
-
-permissions:
-  id-token: write
-  contents: read # actions/checkout のために必要
-
+      - develop
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout current commit
+      - name: "Checkout repository on branch:"
         uses: actions/checkout@v2
-      - uses: ./.github/actions/assets_upload
-        name: "Flutter Build And Assets Upload"
-        with:
-          flutter_target: "lib/main.dart"
-      
+      - name: Install Fvm
+        run: |
+          brew tap leoafarias/fvm
+          brew install fvm
+      - name: Setup Flutter
+        run: fvm install
+      - name: Get all flutter deplendencies
+        run: fvm flutter pub get
+      - name: Run tests with User feedback (in case some test are failing)
+        run: fvm flutter test
