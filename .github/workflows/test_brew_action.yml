@@ -1,0 +1,22 @@
+name: deploy staging
+
+on:
+  push:
+    branches:
+      - 'master'
+
+permissions:
+  id-token: write
+  contents: read # actions/checkout のために必要
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current commit
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/assets_upload
+        name: "Flutter Build And Assets Upload"
+        with:
+          flutter_target: "lib/main.dart"
+      
